@@ -1,6 +1,6 @@
 package lesson4_loops.and.conditions;
 
-public class task_bubble {
+public class TaskBubble {
     public static void main(String[] args) {
         int[] intArray = {31, 432, 3, 42, 51, 999, -1};
         int l = intArray.length;

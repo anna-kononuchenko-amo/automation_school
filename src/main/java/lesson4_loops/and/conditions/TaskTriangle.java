@@ -1,6 +1,6 @@
 package lesson4_loops.and.conditions;
 
-public class task_triangle {
+public class TaskTriangle {
     public static void main(String[] args) {
         int rows = 5;
 

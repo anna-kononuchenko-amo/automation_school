@@ -1,11 +1,30 @@
 package lesson7_generics;
 
-public class SearchResult <T, V>{
-    private String string = "";
-    public String getResult() {
-        return string;
+import java.util.Collections;
+import java.util.List;
+
+public class SearchResult <T> {
+        private List<T> data;
+        private Pagination pagination;
+
+    public SearchResult(List<T> data, Pagination pagination) {
+        this.data = data;
+        this.pagination = pagination;
     }
-    public void setResult (T t, V v){
-        this.string = "{" + this.string + "\n" + t.toString() + "\n" + v.toString() + "\n" + "}";
+
+    public List<T> getData() {
+        return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data = data;
+    }
+
+    public Pagination getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(Pagination pagination) {
+        this.pagination = pagination;
     }
 }

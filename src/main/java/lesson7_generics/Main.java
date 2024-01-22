@@ -6,36 +6,34 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Data<MealSettings, Workout> data = new Data<>();
         Pagination pagination = new Pagination(10, 20, 30);
 
-        MealSettings mealSettings1 = new MealSettings("OMNIVORE", "NONE", 3);
-        MealSettings mealSettings2 = new MealSettings("VEGETARIAN", "GLUTEN-FREE", 5);
-        MealSettings mealSettings3 = new MealSettings("VEGAN", "LACTOSE-FREE", 4);
+        List<MealSettings> mealSettingsList = new ArrayList<>();
 
-        Workout workout1  = new Workout("STRENGTH", "MAIN", true);
-        Workout workout2  = new Workout("YOGA", "RESTORATIVE", false);
+        mealSettingsList.add(new MealSettings("OMNIVORE", "NONE", 3));
+        mealSettingsList.add(new MealSettings("VEGETARIAN", "GLUTEN-FREE", 5));
+        mealSettingsList.add(new MealSettings("VEGAN", "LACTOSE-FREE", 4));
 
-        data.setMealSettings(mealSettings1);
-        data.setMealSettings(mealSettings2);
-        data.setMealSettings(mealSettings3);
-        data.setWorkout(workout1);
-        data.setWorkout(workout2);
+        SearchResult<MealSettings> search1 = new SearchResult<>(mealSettingsList, pagination);
 
-        SearchResult<Data, Pagination> searchResult = new SearchResult<>();
-        searchResult.setResult(data, pagination);
-        System.out.println(searchResult.getResult());
+        List<Workout> workoutList = new ArrayList<>();
+
+        workoutList.add(new Workout("STRENGTH", "MAIN", true));
+        workoutList.add(new Workout("YOGA", "RESTORATIVE", false));
+
+        SearchResult<Workout> search2 = new SearchResult<>(workoutList, pagination);
 
         System.out.println();
         System.out.println("*** MealSettings sorting by meal times per day ***");
         System.out.println();
 
-        List<MealSettings> list = new ArrayList<>();
-        list.add(mealSettings1);
-        list.add(mealSettings2);
-        list.add(mealSettings3);
+        Collections.sort(search1.getData());
+        search1.getData().forEach(System.out::println);
 
-        Collections.sort(list);
-        list.forEach(System.out::println);
+        System.out.println();
+        System.out.println("*** Workouts ***");
+        System.out.println();
+
+        search2.getData().forEach(System.out::println);
     }
 }
